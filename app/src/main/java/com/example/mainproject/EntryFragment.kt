@@ -27,7 +27,7 @@ class EntryFragment : Fragment() {
         return binding?.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //네비컨트롤러를 안전하게 호출
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding?.btnAdd?.setOnClickListener{
