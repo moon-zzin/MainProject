@@ -29,8 +29,10 @@ class EntryFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding?.btnAdd?.setOnClickListener{
+        binding?.btnAdd?.setOnClickListener {
+            findNavController().navigate(R.id.action_entryFragment_to_addListFragment)
+        }
+        /*binding?.btnAdd?.setOnClickListener{
             findNavController().navigate(R.id.action_entryFragment_to_addListFragment)
             //네비컨트롤러 반환 후 네비게이트 지정
         }
@@ -42,9 +44,12 @@ class EntryFragment : Fragment() {
         }
         binding?.btnSettings?.setOnClickListener{
             findNavController().navigate(R.id.action_entryFragment_to_settingsFragment)
-        }
+        }*/
     }
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
     companion object {
         @JvmStatic
         fun newInstance(param1: String, param2: String) =

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/entryFragment"
+        android:icon="@drawable/baseline_list_24"
+        android:title="가계부" />
+    <item
+        android:id="@+id/myAssetFragment"
+        android:icon="@drawable/baseline_wallet_24"
+        android:title="자산" />
+    <item
+        android:id="@+id/savingPlanListFragment"
+        android:icon="@drawable/baseline_savings_24"
+        android:title="저축플랜" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="설정" />
+</menu>
