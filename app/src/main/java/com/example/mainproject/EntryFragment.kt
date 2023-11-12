@@ -10,26 +10,28 @@ import com.example.mainproject.databinding.FragmentEntryBinding
 
 
 class EntryFragment : Fragment() {
-    var binding:FragmentEntryBinding?=null
+    var binding:FragmentEntryBinding? =null
 
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    /*override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
-    }
+    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentEntryBinding.inflate(inflater)
+
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.btnAdd?.setOnClickListener {
+
+        binding?.btnAdd1?.setOnClickListener {
             findNavController().navigate(R.id.action_entryFragment_to_addListFragment)
         }
         /*binding?.btnAdd?.setOnClickListener{
@@ -38,11 +40,12 @@ class EntryFragment : Fragment() {
         }
         binding?.btnAsset?.setOnClickListener{
             findNavController().navigate(R.id.action_entryFragment_to_myAssetFragment)
-        }
-        binding?.btnSaving?.setOnClickListener{
-            findNavController().navigate(R.id.action_entryFragment_to_savingPlanListFragment)
-        }
-        binding?.btnSettings?.setOnClickListener{
+        }*/
+        /*binding?.btnSaving?.setOnClickListener{
+            findNavController().navigate(R.id.action_entryFragment_to_savingPlanListFragment)  //savingPlanListFragment로 이동
+        }*/
+
+       /* binding?.btnSettings?.setOnClickListener{
             findNavController().navigate(R.id.action_entryFragment_to_settingsFragment)
         }*/
     }
