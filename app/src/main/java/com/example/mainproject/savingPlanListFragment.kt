@@ -5,64 +5,55 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.mainproject.databinding.FragmentEntryBinding
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
 
+/**
+ * A simple [Fragment] subclass.
+ * Use the [savingPlanListFragment.newInstance] factory method to
+ * create an instance of this fragment.
+ */
 class savingPlanListFragment : Fragment() {
-    /*override fun onCreate(savedInstanceState: Bundle?) {
+    // TODO: Rename and change types of parameters
+    private var param1: String? = null
+    private var param2: String? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //Fragment의 부모뷰 반환(null 처리)
-        *//*requireView().findViewById<RecyclerView>(R.id.rv_svplans).apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)  //세로 방향으로 recyclerview 작동
-            adapter = SvplansAdapter(svplanlist)
-        }*//*
-    }*/
-    var binding:FragmentEntryBinding? = null
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
-            = inflater.inflate(R.layout.fragment_saving_plan_list, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        // Now, find the RecyclerView and set up its layout manager and adapter
-        view.findViewById<RecyclerView>(R.id.rv_svplans).apply {
-            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = SvplansAdapter(getSampleData())
-        }
-        val fab: FloatingActionButton = view.findViewById(R.id.btn_add1)
-
-        fab.setOnClickListener {
-            findNavController().navigate(R.id.action_savingPlanListFragment_to_setSavingPlanFragment)
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        binding = null
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_saving_plan_list, container, false)
     }
 
-    //목표 금액과 현재 금액 분리하여 추가 하기
-    private fun getSampleData(): List<Svplans> {
-        return listOf(
-            Svplans("스페인 여행", "₩0 / 4,500,000", "D - 10"),
-            Svplans("부산 여행", "₩0 / 500,000", "D - 11"),
-            Svplans("핸드폰", "₩0 / 1,700,000", "D - 121"),
-            Svplans("아이패드", "₩0 / 1,500,000", "D - 1240"),
-            Svplans("내집 마련", "₩123,456,789 / 1,034,500,000", "D - 3240"),
-            Svplans("내차 사기", "₩0 / 52,500,000", "D - 210"),
-            Svplans("스페인 여행", "₩0 / 4,500,000", "D - 10"),
-            Svplans("부산 여행", "₩0 / 500,000", "D - 11"),
-            Svplans("핸드폰", "₩0 / 1,700,000", "D - 121"),
-            Svplans("아이패드", "₩0 / 1,500,000", "D - 1240"),
-            Svplans("내집 마련", "₩123,456,789 / 1,034,500,000", "D - 3240"),
-            Svplans("내차 사기", "₩0 / 52,500,000", "D - 210")
-        )
+    companion object {
+        /**
+         * Use this factory method to create a new instance of
+         * this fragment using the provided parameters.
+         *
+         * @param param1 Parameter 1.
+         * @param param2 Parameter 2.
+         * @return A new instance of fragment savingPlanListFragment.
+         */
+        // TODO: Rename and change types and number of parameters
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            savingPlanListFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
     }
-
 }

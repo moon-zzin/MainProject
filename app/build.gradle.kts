@@ -34,7 +34,7 @@ android {
         jvmTarget = "1.8"
     }
     viewBinding{
-        enable = true
+        enable=true
     }
 }
 
@@ -46,9 +46,9 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.navigation:navigation-fragment-ktx:2.7.5")
     implementation("androidx.navigation:navigation-ui-ktx:2.7.5")
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.activity:activity-ktx:1.8.0")//
+    implementation("androidx.fragment:fragment-ktx:1.6.2")//
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-
 }
