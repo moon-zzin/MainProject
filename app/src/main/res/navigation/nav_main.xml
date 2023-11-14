@@ -17,11 +17,11 @@
             android:id="@+id/action_entryFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
         <action
-            android:id="@+id/action_entryFragment_to_savingPlanListFragment"
-            app:destination="@id/savingPlanListFragment" />
-        <action
             android:id="@+id/action_entryFragment_to_myAssetFragment"
             app:destination="@id/myAssetFragment" />
+        <action
+            android:id="@+id/action_entryFragment_to_savingPlanListFragment"
+            app:destination="@id/savingPlanListFragment" />
     </fragment>
     <fragment
         android:id="@+id/addListFragment"
@@ -44,23 +44,11 @@
     <fragment
         android:id="@+id/setSavingPlanFragment"
         android:name="com.example.mainproject.setSavingPlanFragment"
-        android:label="플랜추가"
+        android:label="저축플랜 추가하기"
         tools:layout="@layout/fragment_set_saving_plan">
         <action
             android:id="@+id/action_setSavingPlanFragment_to_savingPlanListFragment"
             app:destination="@id/savingPlanListFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/savingPlanListFragment"
-        android:name="com.example.mainproject.savingPlanListFragment"
-        android:label="저축플랜"
-        tools:layout="@layout/fragment_saving_plan_list">
-        <action
-            android:id="@+id/action_savingPlanListFragment_to_entryFragment"
-            app:destination="@id/entryFragment" />
-        <action
-            android:id="@+id/action_savingPlanListFragment_to_setSavingPlanFragment"
-            app:destination="@id/setSavingPlanFragment" />
     </fragment>
     <fragment
         android:id="@+id/myAssetFragment"
@@ -94,5 +82,17 @@
         <action
             android:id="@+id/action_assetPlanListFragment_to_setAssetPlanFragment"
             app:destination="@id/setAssetPlanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/savingPlanListFragment"
+        android:name="com.example.mainproject.savingPlanListFragment"
+        android:label="저축플랜"
+        tools:layout="@layout/fragment_saving_plan_list">
+        <action
+            android:id="@+id/action_savingPlanListFragment_to_entryFragment"
+            app:destination="@id/entryFragment" />
+        <action
+            android:id="@+id/action_savingPlanListFragment_to_setSavingPlanFragment"
+            app:destination="@id/setSavingPlanFragment" />
     </fragment>
 </navigation>

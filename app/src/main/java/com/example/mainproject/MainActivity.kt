@@ -13,13 +13,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //액션바 컨트롤
-        binding=ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+
         val appBarConfiguration = AppBarConfiguration( //탑레벨 지정->이 화면들에서는 업버튼X
-            setOf(R.id.myAssetFragment,R.id.assetPlanListFragment,
-                R.id.entryFragment,R.id.settingsFragment)
+            setOf(R.id.myAssetFragment, R.id.assetPlanListFragment, R.id.savingPlanListFragment,
+                R.id.entryFragment, R.id.settingsFragment)
         )
-        val navController=binding.frgNav.getFragment<NavHostFragment>().navController//내브컨트롤러 가져오기
-        setupActionBarWithNavController(navController,appBarConfiguration)
+
+        val navController = binding.frgNav.getFragment<NavHostFragment>().navController//내브컨트롤러 가져오기
+        setupActionBarWithNavController(navController, appBarConfiguration)
         binding.bottomNav.setupWithNavController(navController)
         setContentView(binding.root)
     }

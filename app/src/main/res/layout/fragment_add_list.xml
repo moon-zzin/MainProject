@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:src="@drawable/baseline_add_24" />
+                android:src="@drawable/baseline_keyboard_arrow_down_24" />
 
         </LinearLayout>
 
@@ -40,7 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0"
-            android:text="금액 입력" />
+            android:text="금액 입력"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/editTextNumber2"
