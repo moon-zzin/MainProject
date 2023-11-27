@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "591179465254",
+    "project_id": "mainproject-dfeff",
+    "storage_bucket": "mainproject-dfeff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591179465254:android:3bbaf66fb500387a149ce7",
+        "android_client_info": {
+          "package_name": "com.example.mainproject"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvG7lQrsVI-md0Eq_7hU0rR5AKn2n3TrY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
