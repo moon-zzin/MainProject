@@ -1,5 +1,6 @@
 package com.example.mainproject.svplanViewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,5 +21,7 @@ class SvPlanViewModel: ViewModel() {
         val currentList = _svplanlist.value ?: mutableListOf()
         currentList.add(svplansItem)
         _svplanlist.value = currentList
+
+        Log.d("ViewModel", "Updated svplanlist: $currentList")
     }
 }
