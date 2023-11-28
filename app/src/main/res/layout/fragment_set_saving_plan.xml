@@ -93,12 +93,12 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/btn_add_svplan"
+        app:layout_constraintBottom_toTopOf="@+id/btn_mod_svplan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/btn_add_svplan"
+        android:id="@+id/btn_mod_svplan"
         android:layout_width="120dp"
         android:layout_height="50dp"
         android:text="추가하기"
