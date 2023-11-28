@@ -1,20 +1,35 @@
 package com.example.mainproject
 
+import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mainproject.databinding.FragmentEntryBinding
+import com.example.mainproject.viewmodel.AccountViewModel
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
 //import com.example.mainproject.viewmodel.MainViewModel
 
 
 class EntryFragment : Fragment() {
     var binding:FragmentEntryBinding?=null
-    //val viewModel:MainViewModel by activityViewModels()//뷰모델스함수한테 위임
+    //val viewModel: AccountViewModel by viewModels()//초기화 위임
+    val viewModel: AccountViewModel by activityViewModels()//상위 개념
+    @RequiresApi(Build.VERSION_CODES.O)
+    val current = LocalDateTime.now()
+    @RequiresApi(Build.VERSION_CODES.O)
+    val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+    @RequiresApi(Build.VERSION_CODES.O)
+    val formatted = current.format(formatter)
+    val acclist= AccList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,14 +45,22 @@ class EntryFragment : Fragment() {
         return binding?.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.btnAdd?.setOnClickListener {
+        binding?.txtToday?.text= formatted
+        binding?.btnAdd?.setOnClickListener {//버튼설정
             findNavController().navigate(R.id.action_entryFragment_to_addListFragment)
         }
-        //viewModel.mbti.observe(viewLifecycleOwner){
-        //    binding
-        //}
+        viewModel.balance.observe(viewLifecycleOwner){
+            binding?.txtBalance?.text="잔액: ${viewModel.balance.value}원"
+            binding?.txtExpense?.text="지출: ${viewModel.amount.value}원"
+            binding?.txtIncome?.text="소득: ${viewModel.amount.value}원"
+            view.findViewById<RecyclerView>(R.id.rec_account).apply {//리사이클뷰 설정
+                layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
+                adapter=AccountAdapter(viewModel.acclist.value?.Accounts ?: acclist.Accounts)
+            }
+        }
         /*binding?.btnAdd?.setOnClickListener{
             findNavController().navigate(R.id.action_entryFragment_to_addListFragment)
             //네비컨트롤러 반환 후 네비게이트 지정

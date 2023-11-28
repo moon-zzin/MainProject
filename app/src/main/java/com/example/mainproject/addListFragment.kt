@@ -1,31 +1,24 @@
 package com.example.mainproject
 
 import android.os.Bundle
+import android.text.Editable
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import com.example.mainproject.databinding.FragmentAddListBinding
+import com.example.mainproject.databinding.FragmentEntryBinding
+import com.example.mainproject.viewmodel.AccountViewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [addListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class addListFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    val viewModel:AccountViewModel by activityViewModels()
+    var binding:FragmentAddListBinding?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
         }
     }
 
@@ -34,25 +27,31 @@ class addListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_list, container, false)
+        binding = FragmentAddListBinding.inflate(inflater)
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        //binding?.calAccount?.setOnDateChangeListener()
+        binding?.btnAddAccount?.setOnClickListener{
+            val date="??/??"
+            val amount=binding?.editAmount?.text.toString()
+            val index= viewModel.acclist.value?.numAccounts?.plus(1)
+            var category:String?=null
+            if(binding?.ckbIncome?.isChecked == true) category="소득"
+            if(binding?.ckbExpense?.isChecked == true) category="지출"
+            viewModel.acclist.value?.addAcc(Account(category, date, amount, index))
+            //viewModel.addMoney(binding?.editAmount?.text.toString())
+        }
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment addListFragment.
-         */
-        // TODO: Rename and change types and number of parameters
+
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
             addListFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
                 }
             }
     }
