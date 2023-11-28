@@ -6,15 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
 import androidx.fragment.app.activityViewModels
 import com.example.mainproject.databinding.FragmentAddListBinding
 import com.example.mainproject.databinding.FragmentEntryBinding
 import com.example.mainproject.viewmodel.AccountViewModel
+import java.util.Calendar
 
 
 class addListFragment : Fragment() {
     val viewModel:AccountViewModel by activityViewModels()
     var binding:FragmentAddListBinding?=null
+    private var accountDate: Long = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,9 +36,13 @@ class addListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //binding?.calAccount?.setOnDateChangeListener()
+        var date:String?=null
+        val calaccount: CalendarView? = binding?.calAccount
+        calaccount?.setOnDateChangeListener{calaccount,y,m,d->
+            m.plus(1)
+            date="$y.$m.$d"
+        }
         binding?.btnAddAccount?.setOnClickListener{
-            val date="??/??"
             val amount=binding?.editAmount?.text.toString()
             val index= viewModel.acclist.value?.numAccounts?.plus(1)
             var category:String?=null
