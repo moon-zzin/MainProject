@@ -14,16 +14,19 @@ class AccountViewModel: ViewModel() {
     val balance : LiveData<String> get()=_balance
     val income : LiveData<String> get()=_income
     val expense : LiveData<String> get()=_expense
-    private  val repository=AccountRepository()
-    init{
-        repository.observeBal(_balance)
-    }
+    //private  val repository=AccountRepository()
+    //init{
+    //    repository.observeBal(_balance)
+    //}
     val init=AccList()
     private val _acclist=MutableLiveData<AccList>(init)
     val acclist:LiveData<AccList> get() = _acclist
-    fun addMoney(money:String,incType:Boolean?,expType:Boolean?){
-        if(expType==true) _expense.value=(_expense.value?.toInt()?.plus(money.toInt())).toString()
-        if(incType==true) _income.value=(_income.value?.toInt()?.plus(money.toInt())).toString()
+    fun addMoney(money:Int,isType:Boolean?){
+        if(isType==true) {
+            _expense.value=(_expense.value?.toInt()?.plus(money)).toString()
+        } else if(isType==false) {
+            _income.value=(_income.value?.toInt()?.plus(money)).toString()
+        }
         //repository.postBal(_balance.value?:"0")
     }
 

@@ -5,7 +5,7 @@ import java.time.temporal.TemporalAmount
 import java.util.Calendar
 import java.util.Date
 //Arraylist
-class Account(val category:String?, val date:String?, val amount: String?, val index:Int?)
+class Account(val category:String?, val date:String?, val amount: String?)
 class AccList {
     val Accounts = Array<Account?>(100) {_ -> null}
     var numAccounts = 0

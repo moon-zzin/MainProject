@@ -53,9 +53,9 @@ class EntryFragment : Fragment() {
             findNavController().navigate(R.id.action_entryFragment_to_addListFragment)
         }
         viewModel.balance.observe(viewLifecycleOwner){
-            binding?.txtBalance?.text="잔액: ${viewModel.balance.value}원"
-            binding?.txtExpense?.text="지출: ${viewModel.expense.value}원"
-            binding?.txtIncome?.text="소득: ${viewModel.income.value}원"
+            binding?.txtBalance?.text=viewModel.balance.value
+            binding?.txtExpense?.text=viewModel.expense.value
+            binding?.txtIncome?.text=viewModel.income.value
             view.findViewById<RecyclerView>(R.id.rec_account).apply {//리사이클뷰 설정
                 layoutManager =LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL,false)
                 adapter=AccountAdapter(viewModel.acclist.value?.Accounts ?: acclist.Accounts)

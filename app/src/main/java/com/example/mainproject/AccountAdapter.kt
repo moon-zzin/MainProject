@@ -11,7 +11,7 @@ class AccountAdapter(val accounts: Array<Account?>) : RecyclerView.Adapter<Accou
             binding.txtCategory.text=account?.category
             binding.txtDate.text=account?.date.toString()
             binding.txtAmount.text=account?.amount
-            binding.txtIndex.text= account?.index.toString()
+           //binding.txtIndex.text= account?.index.toString()
         }
     }
     fun cntItem(accouts:Array<Account?>): Int {
