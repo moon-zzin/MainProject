@@ -11,7 +11,7 @@ class AccountViewModel: ViewModel() {
     private val _balance=MutableLiveData<String>("0")
     private val _income=MutableLiveData<String>("0")
     private val _expense=MutableLiveData<String>("0")
-    val balance : LiveData<String> get()=_balance
+    val balance : LiveData<String> get()=_balance//잔액
     val income : LiveData<String> get()=_income
     val expense : LiveData<String> get()=_expense
     //private  val repository=AccountRepository()
