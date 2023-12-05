@@ -46,8 +46,11 @@ class addListFragment : Fragment() {
             val amount=binding?.editAmount?.text.toString()
             val index= viewModel.acclist.value?.numAccounts?.plus(1)
             var category:String?=null
-            if(binding?.ckbIncome?.isChecked == true) category="소득"
-            if(binding?.ckbExpense?.isChecked == true) category="지출"
+            var isInc=binding?.ckbIncome?.isChecked
+            var isExp=binding?.ckbExpense?.isChecked
+            if(isInc==true) category="소득"
+            if(isExp == true) category="지출"
+            viewModel.addMoney(amount,isInc,isExp)
             viewModel.acclist.value?.addAcc(Account(category, date, amount, index))
             //viewModel.addMoney(binding?.editAmount?.text.toString())
         }
