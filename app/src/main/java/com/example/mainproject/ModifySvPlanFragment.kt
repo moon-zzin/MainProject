@@ -8,7 +8,6 @@ import android.view.ViewGroup
 
 class ModifySvPlanFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         /*arguments?.let {

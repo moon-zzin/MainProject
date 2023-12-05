@@ -21,7 +21,7 @@ class SvplansAdapter(val svplanlist: List<Svplans>)
         val setBudget = itemView.findViewById<TextView>(R.id.tv_svplan_setbudget) //예산
         val curBudget = itemView.findViewById<TextView>(R.id.tv_svplan_curbudget)
         //목표 금액과 현재 금액 분리하여 추가 하기 set_budget(목표 예산), cur_budget(현재 예산)
-        val dday = itemView.findViewById<TextView>(R.id.tv_svplan_dday) //디데이
+        val dDay = itemView.findViewById<TextView>(R.id.tv_svplan_dday) //디데이
         /*init {
             itemView.setOnClickListener {
                 itemClickListener.onItemClick(adapterPosition)
@@ -41,7 +41,7 @@ class SvplansAdapter(val svplanlist: List<Svplans>)
         holder.name.text = svplanlist.get(position).name
         holder.curBudget.text = svplanlist.get(position).curBudget
         holder.setBudget.text = svplanlist.get(position).setBudget
-        holder.dday.text = svplanlist.get(position).dday
+        holder.dDay.text = svplanlist.get(position).dDay
     }
 
     override fun getItemCount(): Int = svplanlist.size
