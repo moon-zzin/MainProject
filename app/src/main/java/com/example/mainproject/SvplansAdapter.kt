@@ -15,7 +15,7 @@ class SvplansAdapter(val svplanlist: List<Svplans>)
     }*/
 
     //ViewHolder 생성자
-    class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CustomViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         val name = itemView.findViewById<TextView>(R.id.tv_svplan_name)     //플랜 이름
         val setBudget = itemView.findViewById<TextView>(R.id.tv_svplan_setbudget) //예산
@@ -42,6 +42,8 @@ class SvplansAdapter(val svplanlist: List<Svplans>)
         holder.curBudget.text = svplanlist.get(position).curBudget
         holder.setBudget.text = svplanlist.get(position).setBudget
         holder.dDay.text = svplanlist.get(position).dDay
+
+
     }
 
     override fun getItemCount(): Int = svplanlist.size

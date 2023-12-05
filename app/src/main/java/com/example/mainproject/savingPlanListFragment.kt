@@ -17,6 +17,8 @@ import com.example.mainproject.repository.SvplanRepository
 import com.example.mainproject.svplanViewmodel.SvPlanViewModel
 import com.example.mainproject.svplanViewmodel.SvPlanViewModelFactory
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.FirebaseDatabase
+
 //현재금액 수정 기능 추가, RecyclerView item onclicklistener 설정
 //dDay = -1 되면 아이템 삭제
 class savingPlanListFragment : Fragment() {
@@ -24,11 +26,16 @@ class savingPlanListFragment : Fragment() {
     private var binding: FragmentEntryBinding? = null
     private val svplanlist = mutableListOf<Svplans>()
     private val viewModel: SvPlanViewModel by viewModels( {requireActivity()} ) {
-        SvPlanViewModelFactory(SvplanRepository())
+        SvPlanViewModelFactory(requireContext())
     }
     private val adapter = SvplansAdapter(svplanlist)
-
     //onCreateView함수 지우면 findViewbyId함수 사용 x
+
+    //viewModel -> repository observe
+    override fun onStart() {
+        super.onStart()
+        viewModel.startListeningForChanges()
+    }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
             = inflater.inflate(R.layout.fragment_saving_plan_list, container, false)
 
@@ -44,18 +51,6 @@ class savingPlanListFragment : Fragment() {
         }
 
         //svplanlist observer설정
-        /*viewModel.svplanlist.observe(viewLifecycleOwner) { svplans ->
-            svplanlist.clear()
-            svplanlist.addAll(svplans)
-            //RecyclerView Adapter 업데이트
-            //view.findViewById<RecyclerView>(R.id.rv_svplans).adapter?.notifyDataSetChanged()
-            adapter.notifyDataSetChanged()
-            manageRecyclerViewVisibility(svplanlist.isEmpty())
-
-            Log.d("Fragment", "Adapter notified of data change")
-        }*/
-
-        //svplanlist observer설정
         viewModel.svplanlist.observe(viewLifecycleOwner) { svplans ->
             val previousSize = svplanlist.size
             svplanlist.clear()
@@ -64,6 +59,7 @@ class savingPlanListFragment : Fragment() {
 
             //아이템 없으면
             if (previousSize == 0) adapter.notifyDataSetChanged()
+            //있으면
             else {
                 adapter.notifyItemRangeChanged(0, newSize)
                 if (newSize > previousSize) {
@@ -80,14 +76,14 @@ class savingPlanListFragment : Fragment() {
         //FloatingActionButton 클릭 시 setSavingPlanFragment로 넘어감
         val add1: FloatingActionButton = view.findViewById(R.id.btn_add1)
         add1.setOnClickListener {
-            viewModel.addSvplansToRepository(createNewSvplansItem())
             findNavController().navigate(R.id.action_savingPlanListFragment_to_setSavingPlanFragment)
         }
     }
 
-    private fun createNewSvplansItem()
-        = Svplans(name = "", curBudget = "", setBudget = "", dDay = "")
-
+    override fun onStop() {
+        super.onStop()
+        viewModel.stopListeningForChanges()
+    }
 
     //텍스트뷰 출력상태 제어
     private fun manageRecyclerViewVisibility(chkIsEmpty: Boolean) {

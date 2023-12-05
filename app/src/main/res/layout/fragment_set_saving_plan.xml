@@ -16,6 +16,8 @@
         android:layout_marginBottom="8dp"
         android:hint="이름을 입력하세요"
         android:minHeight="48dp"
+        android:singleLine="true"
+        android:maxLines="1"
         app:layout_constraintBottom_toTopOf="@+id/textView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
