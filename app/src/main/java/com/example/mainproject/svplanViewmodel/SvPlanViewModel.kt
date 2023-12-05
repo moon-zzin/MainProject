@@ -5,9 +5,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mainproject.Svplans
+import com.example.mainproject.repository.SvplanRepository
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+
 
 //SvPlan 데이터 관리 위한 viewmodel
-class SvPlanViewModel: ViewModel() {
+class SvPlanViewModel(private val svplanRepository: SvplanRepository): ViewModel() {
+
+    private val datatbaseReference: DatabaseReference = FirebaseDatabase.getInstance().getReference("svplans")
     private val _svplanlist = MutableLiveData<MutableList<Svplans>>()
     val svplanlist: LiveData<MutableList<Svplans>> get() = _svplanlist
 
@@ -16,12 +22,18 @@ class SvPlanViewModel: ViewModel() {
         _svplanlist.value = mutableListOf()
     }
 
-    // Function to update the MutableLiveData with a new Svplans item
+    //MutableLiveData 새로운 Svplans Item으로 없데이트
     fun updateSvplanList(svplansItem: Svplans) {
-        val currentList = _svplanlist.value ?: mutableListOf()
+        /*val currentList = _svplanlist.value ?: mutableListOf()
         currentList.add(svplansItem)
         _svplanlist.value = currentList
 
-        Log.d("ViewModel", "Updated svplanlist: $currentList")
+        Log.d("ViewModel", "Updated svplanlist: $currentList")*/
+        _svplanlist.postValue(_svplanlist.value?.apply { add(svplansItem) } ?: mutableListOf(svplansItem))
+    }
+
+
+    fun addSvplansToRepository(svplansItem: Svplans) {
+        svplanRepository.addSvplans(svplansItem)
     }
 }

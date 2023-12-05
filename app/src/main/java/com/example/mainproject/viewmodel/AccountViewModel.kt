@@ -12,7 +12,7 @@ class AccountViewModel: ViewModel() {
     private val _amount=MutableLiveData<String>("0")
     val balance : LiveData<String> get()=_balance
     val amount : LiveData<String> get()=_amount
-    private  val repository=AccountRepository()
+    private  val repository = AccountRepository()
     init{
         repository.observeBal(_balance)
     }

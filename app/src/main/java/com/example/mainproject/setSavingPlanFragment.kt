@@ -61,8 +61,7 @@ class setSavingPlanFragment : Fragment() {
             //목표 예산
             val setBudget = view.findViewById<EditText>(R.id.txt_svplan_budget)?.text.toString()
 
-
-            //버튼이 클릭 된 후 값 읽음, 세 값이 null이 아닐때만 navigate동작
+            //버튼이 클릭 된 후 값 읽음, 세 값이 비어있지 않을때만 navigate동작
             if(name.isNotEmpty() && setBudget.isNotEmpty() && calculateDday(selectedDate, currentDate) > 0) {
                 //fragement가 처음 생성되면 savedInstanceState가 null
                 if (savedInstanceState == null) {
@@ -70,7 +69,7 @@ class setSavingPlanFragment : Fragment() {
                         name = name,
                         curBudget = "0",
                         setBudget = setBudget,
-                        dday = calculateDday(selectedDate, currentDate).toString()
+                        dDay = calculateDday(selectedDate, currentDate).toString()
                     )
                     viewModel.updateSvplanList(svplansItem)
                 }
@@ -86,19 +85,18 @@ class setSavingPlanFragment : Fragment() {
                 findNavController().navigate(
                     R.id.action_setSavingPlanFragment_to_savingPlanListFragment, bundle)
             }
-
             //이름이 입력 안된경우  toast message
             else if(name.isEmpty()) {
                 //requireActivity: IllegalStateException throw함, nullable 객체 return 가능
-                Toast.makeText(requireActivity(), "플랜 이름을 반드시 입력해 주세요", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireActivity(), "플랜 이름을 입력해 주세요", Toast.LENGTH_SHORT).show()
                 Log.d("Debug", "plan name is empty")
             }
             //예산이 입력 안된경우 toast message
-            else if (name.isNotEmpty() && setBudget.isEmpty() && selectedDate > currentDate) {
-                Toast.makeText(requireActivity(), "플랜 이름과 목표 금액을 입력해 주세요", Toast.LENGTH_SHORT).show()
+            else if (name.isNotEmpty() && setBudget.isEmpty()) {
+                Toast.makeText(requireActivity(), "목표 금액을 입력해 주세요", Toast.LENGTH_SHORT).show()
                 Log.d("Debug", "setBudget is empty")
             }
-            //잘못돤 날짜 선택된 경우
+            //잘못돤 날짜 선택된 경우 toast message
             else if(name.isNotEmpty() && setBudget.isNotEmpty() && selectedDate <= currentDate) {
                 Toast.makeText(requireActivity(), "유효한 날짜를 선택해 주세요", Toast.LENGTH_SHORT).show()
                 Log.d("Debug", "wrong selectedDate")
